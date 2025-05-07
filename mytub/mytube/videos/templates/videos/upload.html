@@ -1,0 +1,17 @@
+{% extends 'videos/base.html' %}
+
+{% block title %}Загрузка видео{% endblock %}
+
+{% block content %}
+    <h2>Загрузка видео</h2>
+
+    {% if user.user_type != "teacher" %}
+        <p style="color: red;">Только учителя могут загружать видео.</p>
+    {% else %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Загрузить</button>
+        </form>
+    {% endif %}
+{% endblock %}
